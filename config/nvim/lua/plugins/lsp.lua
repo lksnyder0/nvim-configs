@@ -5,18 +5,26 @@ return {
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			"j-hui/fidget.nvim",
+			{ "j-hui/fidget.nvim", branch = "legacy" },
 			"folke/neodev.nvim",
 			"RRethy/vim-illuminate",
 			"hrsh7th/cmp-nvim-lsp",
+			"lukas-reineke/lsp-format.nvim",
 		},
 		config = function()
 			-- Set up Mason before anything else
 			require("mason").setup()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
+					"dockerls",
+					-- "docker_compose_language_service",
+					"gopls",
+					"jsonls",
+					"marksman",
 					"lua_ls",
 					"pylsp",
+					"solargraph",
+					"terraformls",
 				},
 				automatic_installation = true,
 			})
@@ -81,11 +89,46 @@ return {
 
 				-- Attach and configure vim-illuminate
 				require("illuminate").on_attach(client)
+				require("lsp-format").on_attach(client, bufnr)
 			end
 
 			-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+			local default_lsp_config = {
+				"dockerls",
+				-- "docker_compose_language_service",
+				"gopls",
+				"jsonls",
+				"marksman",
+				"solargraph",
+				"terraformls",
+			}
+			for _, v in ipairs(default_lsp_config) do
+				require("lspconfig")[v].setup({
+					on_attach = on_attach,
+					capabilities = capabilities,
+				})
+			end
+
+			-- Go
+			-- require("lspconfig")["gopls"].setup({
+			-- 	on_attach = on_attach,
+			-- 	capabilities = capabilities,
+			-- })
+
+			-- JSON
+			-- require("lspconfig")["jsonls"].setup({
+			-- 	on_attach = on_attach,
+			-- 	capabilities = capabilities,
+			-- })
+
+			-- Markdown
+			-- require("lspconfig")["marksman"].setup({
+			-- 	on_attach = on_attach,
+			-- 	capabilities = capabilities,
+			-- })
 
 			-- Lua
 			require("lspconfig")["lua_ls"].setup({
@@ -138,6 +181,18 @@ return {
 					},
 				},
 			})
+
+			-- Ruby
+			-- require("lspconfig")["solargraph"].setup({
+			-- 	on_attach = on_attach,
+			-- 	capabilities = capabilities,
+			-- })
+
+			-- Terraform
+			-- require("lspconfig")["terraformls"].setup({
+			-- 	on_attach = on_attach,
+			-- 	capabilities = capabilities,
+			-- })
 		end,
 	},
 }

@@ -17,6 +17,12 @@ return {
 					next = "cn",
 					prev = "cp",
 				},
+				highlights = { -- They must have background color, otherwise the default color will be used
+					incoming = 'DiffAdd',
+					current = 'DiffText',
+				},
+			    debug = false,
+				disable_diagnostics = false
 			})
 		end,
 	},
