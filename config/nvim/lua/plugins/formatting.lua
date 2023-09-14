@@ -28,6 +28,9 @@ return {
 					python = {
 						require("formatter.filetypes.python").black
 					},
+					ruby = {
+						require("formatter.filetypes.ruby").rubocup
+					},
 					terraform = {
 						require("formatter.filetypes.terraform").terraformfmt
 					},
