@@ -37,6 +37,7 @@ return {
 			map("n", "<leader>sf", require("telescope.builtin").find_files, "Files")
 			map("n", "<leader>sh", require("telescope.builtin").help_tags, "Help")
 			map("n", "<leader>sw", require("telescope.builtin").grep_string, "Current word")
+			-- Needs https://github.com/BurntSushi/ripgrep
 			map("n", "<leader>sg", require("telescope.builtin").live_grep, "Grep")
 			map("n", "<leader>sd", require("telescope.builtin").diagnostics, "Diagnostics")
 
