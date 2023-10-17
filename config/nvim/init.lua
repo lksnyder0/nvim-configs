@@ -6,3 +6,5 @@ require("core.keymaps")
 
 -- Other options
 require("core.options")
+
+vim.opt.termguicolors = true
