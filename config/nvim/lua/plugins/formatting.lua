@@ -34,6 +34,18 @@ return {
 					terraform = {
 						require("formatter.filetypes.terraform").terraformfmt
 					},
+					hcl = {
+						function()
+							return {
+								exe = "packer",
+								args = {
+									"fmt",
+									"-",
+								},
+								stdin = true,
+							}
+						end
+					},
 					["*"] = {
 						require("formatter.filetypes.any").remove_trailing_whitespace
 					}
