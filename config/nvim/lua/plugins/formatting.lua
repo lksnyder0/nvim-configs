@@ -34,6 +34,9 @@ return {
 					terraform = {
 						require("formatter.filetypes.terraform").terraformfmt
 					},
+					tf = {
+						require("formatter.filetypes.terraform").terraformfmt
+					},
 					hcl = {
 						function()
 							return {
