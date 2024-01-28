@@ -21,4 +21,5 @@ return {
 	},
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	"tpope/vim-surround", -- Surround stuff with the ys-, cs-, ds- commands
+	"tpope/vim-dotenv", -- Load environment variables from .env files
 }
