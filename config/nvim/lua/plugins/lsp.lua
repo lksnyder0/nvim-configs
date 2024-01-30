@@ -97,13 +97,14 @@ return {
 			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 			local default_lsp_config = {
-				"dockerls",
+				"dockerls", -- Docker
 				-- "docker_compose_language_service",
-				"gopls",
-				"jsonls",
-				"marksman",
-				"solargraph",
-				"terraformls",
+				"gopls", -- Go
+				"jsonls", -- JSON
+				"marksman", -- Markdown
+				"solargraph", -- Ruby
+				"terraformls", -- Terraform
+				"lemminx", -- XML
 			}
 			for _, v in ipairs(default_lsp_config) do
 				require("lspconfig")[v].setup({
